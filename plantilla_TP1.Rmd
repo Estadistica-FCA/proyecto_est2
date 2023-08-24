@@ -1,0 +1,241 @@
+---
+title: "TP1 Repas"
+output: html_document
+---
+
+Cada vez que se inicia la sesion de RStudio debemos leer los paquetes que serán utilizados:
+
+```{r, include = FALSE}
+# Paquetes requeridos
+pacman::p_load(rio, tidyverse) 
+```
+
+
+## Ejercicio 1
+
+Se estudió el efecto de la Vitamina A en el crecimiento de vaquillas Holstein. Se seleccionaron 30 vaquillas de similar peso inicial y edad, las cuales fueron alimentadas individualmente durante un cierto período. A la mitad de las vaquillonas se les suministró una dieta sin Vitamina A (control) y al resto una dieta rica en Vitamina A. La asignación de las dietas fue completamente al azar. Al final del ensayo se registró el peso final y se calculó la ganancia diara de peso vivo (GDPV) en g/día/animal.
+
+### Item (a)
+
+Cargue los datos en R
+
+```{r}
+# Importar datos
+vitA <- import("../data/vitA_vaquillas.xlsx")
+vitA
+```
+
+### Item (b)
+
+Grafique las observaciones y calcule estadísticas de resumen.
+
+```{r}
+ggplot(vitA) +
+  aes(x = Tratamiento, y = GDPV) + 
+  geom_jitter(width = 0.1) +
+  geom_pointrange(stat = "summary", fun.data = "mean_se", color = "blue")
+```
+
+
+### Item (c)
+
+Plantee las hipótesis correspondientes.
+
+$$
+H_0: \mu_A = \mu_C \\
+H_1: \mu_A \ne \mu_C \\
+$$
+
+### Item (d)
+
+¿Hay evidencia suficiente para decir que la vitamina tiene efecto en la GPDV?
+
+```{r}
+var.test(GDPV ~ Tratamiento, vitA)
+```
+
+Varianzas homogeneas
+
+
+```{r}
+t.test(GDPV ~ Tratamiento, vitA, var.equal = T, alternative = "two")
+```
+
+### Item (e)
+
+Estime e interprete el intervalo de confianza 95% para la diferencia de GDPV
+
+
+Con un 95% de confianza, al verdadera diferencia de GDPV de está entre -84 a -11 a favor de Vita A.
+
+## Ejercicio 2
+
+Se realizó un ensayo de digestibilidad in vivo para determinar si la digestibilidad de la materia seca (DMS) de ensilaje de maiz es similar en corderos y novillos. Para ello se seleccionaron 7 corderos y 6 novillos a los cuales se les suministró el ensilaje y se midió la digestibilidad de lo consumido. 
+
+
+### Item (a)
+
+Cargue los datos en R
+
+```{r}
+# Importar datos
+
+```
+
+### Item (b)
+
+Grafique las observaciones y calcule estadísticas de resumen.
+
+```{r}
+
+```
+
+
+### Item (c)
+
+Plantee las hipótesis correspondientes.
+
+
+### Item (d)
+
+¿Hay diferencias en la DMS entre corderos y novillos?
+
+```{r}
+
+```
+
+
+### Item (e)
+
+Estime e interprete el intervalo de confianza 95% para la diferencia de DMS
+
+```{r}
+
+```
+
+## Ejercicio 3
+
+El guayule (_Parthenium argentatum_) es una planta arbustiva que se utiliza como fuente alternativa de látex hipoalergénico. En un estudio para caracterizar los contenidos de caucho se recolectaron 54 ejemplares los cuales se clasificaron en `atípicos` y `aberrantes`. A cada individuo de estos grupos se le midió el contenido de caucho. 
+
+### Item (a)
+
+Cargue los datos en R
+
+```{r}
+# Importar datos
+
+```
+
+### Item (b)
+
+Grafique las observaciones y calcule estadísticas de resumen.
+
+```{r}
+
+```
+
+### Item (c)
+
+Plantee las hipótesis correspondientes.
+
+### Item (d)
+
+¿Las diferencias de contenido de caucho entre `atípicos` y `aberrantes`?
+
+```{r}
+
+```
+
+
+### Item (e)
+
+Estime e interprete el intervalo de confianza 95% para la diferencia de contenido de caucho.
+
+```{r}
+
+```
+
+
+## Ejercicio 4
+
+La acetil colinesterasa (ACE) es un indicador de la actividad cerebral. Las codornices son muy suceptibles a un determinado pesticida usado en la producción de algodón ya que cantidades residuales de dicho pesticida produce cambios en su actividad cerebral. Para determinar si una nueva formulación disminuye la deriva de este producto, se utilizaron dos grupos de codornices: un grupo de 6 codornicse se expuso a las condiciones ambientales antes de la aplicación y otro grupo luego de la aplicación. En ambos grupos se midió los niveles de ACE. 
+
+### Item (a)
+
+Cargue los datos en R
+
+```{r}
+# Importar datos
+
+```
+
+### Item (b)
+
+Grafique las observaciones y calcule estadísticas de resumen.
+
+```{r}
+
+```
+
+### Item (c)
+
+Plantee las hipótesis correspondientes.
+
+### Item (d)
+
+¿Hay diferencias en la ACE de las codornices antes y despues de la aplicación?
+
+```{r}
+
+```
+
+### Item (e)
+
+Estime e interprete el intervalo de confianza 95% para la diferencia de ACE
+
+```{r}
+
+```
+
+## Ejercicio 5
+
+Un investigador estudió el efecto de la presión de vapor en la secreción de néctar de flores de trébol rojo (_Trifolium pratense_). Para su experimento tomó 10 cabezas (inflorecencias) de trébol rojo y las dividió a la mitad. Cada mitad fue sometida a una presión de vapor (4.4 o 9.9 mmHg) y luego se midió la concentración de azúcares del nectar.
+
+### Item (a)
+
+Cargue los datos en R
+
+```{r}
+# Importar datos
+
+```
+
+### Item (b)
+
+a. Grafique las observaciones y calcule estadísticas de resumen.
+
+```{r}
+
+```
+
+
+### Item (c)
+
+b. Plantee las hipótesis correspondientes.
+
+### Item (d)
+
+c. ¿Hay diferencias en la secreción de nectar según la presión de vapor?
+
+```{r}
+
+```
+
+### Item (e)
+
+d. Estime e interprete el intervalo de confianza 95% para la diferencia.
+
+```{r}
+
+```
+
